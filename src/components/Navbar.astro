@@ -41,13 +41,11 @@ const links = [
                         {link.name}
                     </a>
                 ))}
-                <a href="/#contact">
-                    <a 
-                        href="/#contact"
-                        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
-                    >
-                        Contactar
-                    </a>
+                <a 
+                    href="/#contact"
+                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
+                >
+                    Contactar
                 </a>
             </div>
 
@@ -87,13 +85,11 @@ const links = [
                     </a>
                 ))}
                 <div class="mt-4 px-3">
-                    <a href="/#contact">
-                        <a 
-                            href="/#contact"
-                            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center w-full"
-                        >
-                            Contactar
-                        </a>
+                    <a 
+                        href="/#contact"
+                        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center w-full"
+                    >
+                        Contactar
                     </a>
                 </div>
             </div>
@@ -102,22 +98,36 @@ const links = [
 </header>
 
 <script>
-    // Toggle mobile menu
-    const button = document.getElementById('mobile-menu-button');
-    const menu = document.getElementById('mobile-menu');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
 
-    button?.addEventListener('click', () => {
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        button.setAttribute('aria-expanded', (!expanded).toString());
-        menu?.classList.toggle('hidden');
+    // Toggle mobile menu
+    mobileMenuButton?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+        
+        // Update aria-expanded
+        const isExpanded = mobileMenu?.classList.contains('hidden') === false;
+        mobileMenuButton.setAttribute('aria-expanded', isExpanded.toString());
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenuLinks?.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu?.classList.add('hidden');
+            mobileMenuButton?.setAttribute('aria-expanded', 'false');
+        });
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (event) => {
-        const target = event.target as Node;
-        if (!button?.contains(target) && !menu?.contains(target)) {
-            button?.setAttribute('aria-expanded', 'false');
-            menu?.classList.add('hidden');
+        const target = event.target as HTMLElement;
+        const isMenuButton = target.closest('#mobile-menu-button');
+        const isMenu = target.closest('#mobile-menu');
+        
+        if (!isMenuButton && !isMenu && !mobileMenu?.classList.contains('hidden')) {
+            mobileMenu?.classList.add('hidden');
+            mobileMenuButton?.setAttribute('aria-expanded', 'false');
         }
     });
 </script>
