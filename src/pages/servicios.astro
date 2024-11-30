@@ -186,9 +186,8 @@ const services = [
 
 <script>
     // Filtrado de servicios
-    const filterButtons = document.querySelectorAll('[data-category]');
-    const servicesGrid = document.getElementById('services-grid');
-    const serviceCards = document.querySelectorAll('[data-category]');
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-category]');
+    const serviceCards = document.querySelectorAll<HTMLElement>('[data-category]');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -216,7 +215,8 @@ const services = [
     });
 
     // Activar "Todos" por defecto
-    document.querySelector('[data-category="Todos"]').click();
+    const defaultButton = document.querySelector<HTMLButtonElement>('[data-category="Todos"]');
+    defaultButton?.click();
 </script>
 
 <style>
