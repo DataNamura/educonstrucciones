@@ -4,14 +4,6 @@ import Layout from '../layouts/Layout.astro';
 const title = "Proyectos de Construcción y Reformas en Tenerife";
 const description = "Descubra nuestro portfolio de proyectos de construcción y reformas en Tenerife. Viviendas, locales comerciales y rehabilitaciones realizadas con excelencia y profesionalidad.";
 
-const categories = [
-  "Todos",
-  "Construcción",
-  "Reformas",
-  "Especialidades",
-  "Diseño de Interiores"
-];
-
 const projects = [
   {
     title: "Residencial Los Álamos",
@@ -133,12 +125,9 @@ const projects = [
 ];
 ---
 
-<Layout 
-    title={title}
-    description={description}
->
+<Layout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="relative py-20 overflow-hidden">
+  <section class="relative py-32">
     <!-- Background con efecto parallax -->
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
@@ -150,26 +139,13 @@ const projects = [
     </div>
     
     <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-3xl">
+      <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
           Nuestros Proyectos
         </h1>
         <p class="text-xl text-gray-200 mb-8">
           Descubre nuestra trayectoria a través de los proyectos más destacados que hemos realizado.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Filtros -->
-  <section class="py-8 border-b">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-wrap gap-4">
-        {categories.map(category => (
-          <button class="px-6 py-2 rounded-full border border-gray-200 hover:border-blue-500 hover:text-blue-500 transition-colors">
-            {category}
-          </button>
-        ))}
       </div>
     </div>
   </section>
@@ -203,32 +179,22 @@ const projects = [
 
             <!-- Contenido -->
             <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
                 {project.title}
               </h3>
               <p class="text-gray-600 mb-4">
                 {project.description}
               </p>
-              
-              <!-- Detalles -->
-              <ul class="space-y-2 mb-6">
+              <ul class="space-y-2">
                 {project.details.map(detail => (
-                  <li class="flex items-center text-gray-600 text-sm">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>
+                  <li class="flex items-center text-gray-600">
+                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
                     {detail}
                   </li>
                 ))}
               </ul>
-
-              <!-- Botón -->
-              <div class="mt-6">
-                <a 
-                  href="/#contact"
-                  class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
-                >
-                  Ver Detalles
-                </a>
-              </div>
             </div>
           </article>
         ))}
@@ -237,7 +203,7 @@ const projects = [
   </section>
 
   <!-- CTA Section -->
-  <section class="py-20">
+  <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-4 text-center">
       <div class="max-w-2xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 mb-6">
@@ -262,16 +228,31 @@ const projects = [
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('opacity-100', 'translate-y-0');
-        entry.target.classList.remove('opacity-0', 'translate-y-8');
+        entry.target.classList.add('fade-in');
       }
     });
   }, {
     threshold: 0.1
   });
 
-  document.querySelectorAll('article').forEach(article => {
-    article.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-500');
+  document.querySelectorAll('article').forEach((article) => {
     observer.observe(article);
   });
 </script>
+
+<style>
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
