@@ -1,16 +1,26 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import WhyUs from '../components/sections/WhyUs.astro';
+import Stats from '../components/sections/Stats.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Contact from '../components/sections/Contact.astro';
+import Projects from '@/components/sections/Projects.astro';
 
+const title = "Empresa de Construcción y Reformas en Tenerife";
+const description = "Eduardo Construcciones, su empresa de confianza para construcción y reformas en Tenerife. Especialistas en proyectos residenciales, comerciales y reformas integrales. Solicite presupuesto sin compromiso.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout 
+	title={title}
+	description={description}
+>
+	<main class="overflow-hidden">
+		<Hero />
+		<Services />
+		<Projects />
+		<WhyUs />
+		<Contact />
+	</main>
+</Layout>

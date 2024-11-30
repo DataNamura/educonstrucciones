@@ -1,0 +1,277 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Proyectos de Construcción y Reformas en Tenerife";
+const description = "Descubra nuestro portfolio de proyectos de construcción y reformas en Tenerife. Viviendas, locales comerciales y rehabilitaciones realizadas con excelencia y profesionalidad.";
+
+const categories = [
+  "Todos",
+  "Construcción",
+  "Reformas",
+  "Especialidades",
+  "Diseño de Interiores"
+];
+
+const projects = [
+  {
+    title: "Residencial Los Álamos",
+    description: "Complejo residencial de lujo con 24 viviendas",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80",
+    category: "Construcción",
+    year: "2023",
+    details: [
+      "24 viviendas de lujo",
+      "Zonas comunes",
+      "Piscina",
+      "Jardines"
+    ]
+  },
+  {
+    title: "Reforma Integral Ático",
+    description: "Transformación completa de un ático en el centro de la ciudad",
+    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80",
+    category: "Reformas",
+    year: "2023",
+    details: [
+      "200m² reformados",
+      "Terraza panorámica",
+      "Domótica integrada",
+      "Diseño moderno"
+    ]
+  },
+  {
+    title: "Edificio Smart Office",
+    description: "Oficinas inteligentes con tecnología de última generación",
+    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80",
+    category: "Especialidades",
+    year: "2022",
+    details: [
+      "1500m² de oficinas",
+      "Sistema domótico",
+      "Eficiencia energética",
+      "Parking inteligente"
+    ]
+  },
+  {
+    title: "Centro Comercial Plaza",
+    description: "Renovación completa de centro comercial",
+    image: "https://images.unsplash.com/photo-1555636222-cae831e670b3?auto=format&fit=crop&q=80",
+    category: "Construcción",
+    year: "2022",
+    details: [
+      "30 locales comerciales",
+      "Food court",
+      "Parking subterráneo",
+      "Zona de ocio"
+    ]
+  },
+  {
+    title: "Villa Mediterránea",
+    description: "Construcción de villa de lujo con vistas al mar",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80",
+    category: "Construcción",
+    year: "2023",
+    details: [
+      "450m² construidos",
+      "Piscina infinity",
+      "Jardín tropical",
+      "Domótica"
+    ]
+  },
+  {
+    title: "Hotel Boutique",
+    description: "Reforma integral de edificio histórico",
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80",
+    category: "Reformas",
+    year: "2022",
+    details: [
+      "15 habitaciones",
+      "Restaurante",
+      "Spa",
+      "Terraza"
+    ]
+  },
+  {
+    title: "Casa Sostenible",
+    description: "Vivienda unifamiliar con certificación energética A",
+    image: "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?auto=format&fit=crop&q=80",
+    category: "Construcción",
+    year: "2023",
+    details: [
+      "Paneles solares",
+      "Sistema de recuperación de agua",
+      "Aislamiento térmico",
+      "Domótica"
+    ]
+  },
+  {
+    title: "Loft Industrial",
+    description: "Transformación de nave industrial en loft moderno",
+    image: "https://images.unsplash.com/photo-1574739782594-db4ead022697?auto=format&fit=crop&q=80",
+    category: "Reformas",
+    year: "2022",
+    details: [
+      "300m² reformados",
+      "Diseño industrial",
+      "Espacios abiertos",
+      "Materiales reciclados"
+    ]
+  },
+  {
+    title: "Edificio de Oficinas Verde",
+    description: "Edificio corporativo sostenible",
+    image: "https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?auto=format&fit=crop&q=80",
+    category: "Construcción",
+    year: "2023",
+    details: [
+      "Certificación LEED",
+      "Jardines verticales",
+      "Sistema de energía solar",
+      "Gestión inteligente"
+    ]
+  }
+];
+---
+
+<Layout 
+    title={title}
+    description={description}
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <!-- Background con efecto parallax -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
+      <img 
+        src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&q=80" 
+        alt="Proyectos Hero"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Nuestros Proyectos
+        </h1>
+        <p class="text-xl text-gray-200 mb-8">
+          Descubre nuestra trayectoria a través de los proyectos más destacados que hemos realizado.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtros -->
+  <section class="py-8 border-b">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap gap-4">
+        {categories.map(category => (
+          <button class="px-6 py-2 rounded-full border border-gray-200 hover:border-blue-500 hover:text-blue-500 transition-colors">
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid de Proyectos -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map(project => (
+          <article class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <!-- Imagen -->
+            <div class="relative h-64 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="flex items-center space-x-2">
+                    <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">
+                      {project.category}
+                    </span>
+                    <span class="px-3 py-1 bg-gray-900/60 text-white text-sm rounded-full">
+                      {project.year}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                {project.title}
+              </h3>
+              <p class="text-gray-600 mb-4">
+                {project.description}
+              </p>
+              
+              <!-- Detalles -->
+              <ul class="space-y-2 mb-6">
+                {project.details.map(detail => (
+                  <li class="flex items-center text-gray-600 text-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>
+                    {detail}
+                  </li>
+                ))}
+              </ul>
+
+              <!-- Botón -->
+              <div class="mt-6">
+                <a 
+                  href="/#contact"
+                  class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+                >
+                  Ver Detalles
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          ¿Tiene un proyecto en mente?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Cuéntenos sobre su proyecto y le ayudaremos a hacerlo realidad
+        </p>
+        <a 
+          href="/#contact"
+          class="inline-block min-w-[200px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+        >
+          Contactar Ahora
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Animación al hacer scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100', 'translate-y-0');
+        entry.target.classList.remove('opacity-0', 'translate-y-8');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  document.querySelectorAll('article').forEach(article => {
+    article.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-500');
+    observer.observe(article);
+  });
+</script>

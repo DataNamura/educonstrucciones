@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Servicios de Construcción y Reformas en Tenerife";
+const description = "Servicios profesionales de construcción y reformas en Tenerife. Especialistas en obra nueva, reformas integrales, rehabilitación de edificios y proyectos comerciales. Calidad y experiencia garantizada.";
+
+const categories = [
+    "Todos",
+    "Construcción",
+    "Reformas",
+    "Comercial",
+    "Rehabilitación"
+];
+
+const services = [
+    {
+        title: "Construcción de Viviendas",
+        description: "Diseñamos y construimos la casa de sus sueños en Tenerife. Desde villas modernas hasta chalés tradicionales, nos adaptamos a su estilo y presupuesto.",
+        category: "Construcción",
+        features: [
+            "Diseño personalizado",
+            "Materiales de alta calidad",
+            "Eficiencia energética",
+            "Gestión integral del proyecto"
+        ],
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+        imageAlt: "Construcción moderna de vivienda en Tenerife"
+    },
+    {
+        title: "Reformas Integrales",
+        description: "Transformamos completamente su espacio con reformas integrales que combinan funcionalidad y estética.",
+        category: "Reformas",
+        features: [
+            "Reformas de cocinas y baños",
+            "Redistribución de espacios",
+            "Renovación de instalaciones",
+            "Acabados de alta calidad"
+        ],
+        image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80",
+        imageAlt: "Reforma integral de cocina moderna"
+    },
+    {
+        title: "Proyectos Comerciales",
+        description: "Espacios comerciales que destacan. Construimos y reformamos locales que atraen clientes y optimizan su negocio.",
+        category: "Comercial",
+        features: [
+            "Diseño de locales comerciales",
+            "Oficinas corporativas",
+            "Restaurantes y hoteles",
+            "Espacios retail"
+        ],
+        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
+        imageAlt: "Diseño de espacio comercial moderno"
+    },
+    {
+        title: "Rehabilitación de Edificios",
+        description: "Devolvemos la vida a edificios históricos y mejoramos la eficiencia de construcciones existentes.",
+        category: "Rehabilitación",
+        features: [
+            "Restauración de fachadas",
+            "Refuerzo estructural",
+            "Mejora energética",
+            "Actualización de instalaciones"
+        ],
+        image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&q=80",
+        imageAlt: "Rehabilitación de edificio histórico"
+    }
+];
+---
+
+<Layout 
+    title={title}
+    description={description}
+>
+    <!-- Hero Section -->
+    <section class="relative py-20 overflow-hidden">
+        <!-- Background con efecto parallax -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
+            <img 
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80" 
+                alt="Servicios de Construcción"
+                class="w-full h-full object-cover"
+            />
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    Nuestros Servicios
+                </h1>
+                <p class="text-xl text-gray-200 mb-8">
+                    Soluciones integrales en construcción y reformas adaptadas a sus necesidades en Tenerife
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="py-8 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-4 justify-center">
+                {categories.map((category) => (
+                    <button
+                        class="px-6 py-2 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        data-category={category}
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Servicios -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+                {services.map((service) => (
+                    <article class="group bg-white rounded-xl shadow-lg overflow-hidden" data-category={service.category}>
+                        <!-- Imagen -->
+                        <div class="relative h-64 overflow-hidden">
+                            <img
+                                src={service.image}
+                                alt={service.imageAlt}
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">
+                                    {service.category}
+                                </span>
+                                <h3 class="text-xl font-bold text-white mt-2">
+                                    {service.title}
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Contenido -->
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">
+                                {service.description}
+                            </p>
+                            <ul class="space-y-2">
+                                {service.features.map((feature) => (
+                                    <li class="flex items-center text-gray-600">
+                                        <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div class="mt-6">
+                                <a href="/#contact" class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
+                                    Solicitar Información
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                    ¿Tiene un proyecto en mente?
+                </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Cuéntenos sobre su proyecto y le ayudaremos a hacerlo realidad
+                </p>
+                <a 
+                    href="/#contact"
+                    class="inline-block min-w-[200px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                >
+                    Contactar Ahora
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+    // Filtrado de servicios
+    const filterButtons = document.querySelectorAll('[data-category]');
+    const servicesGrid = document.getElementById('services-grid');
+    const serviceCards = document.querySelectorAll('[data-category]');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            
+            // Actualizar botones activos
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+            button.classList.remove('bg-white', 'text-gray-700');
+            button.classList.add('bg-blue-600', 'text-white');
+
+            // Filtrar servicios
+            serviceCards.forEach(card => {
+                if (category === 'Todos' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    // Añadir animación de entrada
+                    card.classList.add('animate-fade-in');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Activar "Todos" por defecto
+    document.querySelector('[data-category="Todos"]').click();
+</script>
+
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+    }
+</style>

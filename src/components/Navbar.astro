@@ -1,0 +1,126 @@
+---
+const links = [
+    {
+        name: "Inicio",
+        href: "/"
+    },
+    {
+        name: "Servicios",
+        href: "/servicios"
+    },
+    {
+        name: "Proyectos",
+        href: "/proyectos"
+    },
+    {
+        name: "¿Por qué nosotros?",
+        href: "/#why-us"
+    },
+    {
+        name: "Contacto",
+        href: "/#contact"
+    }
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
+    <nav class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-2">
+                <span class="text-xl font-bold text-gray-900">Eduardo Construcciones</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                {links.map(link => (
+                    <a
+                        href={link.href}
+                        class="text-gray-600 hover:text-blue-600 transition-colors text-sm font-medium"
+                    >
+                        {link.name}
+                    </a>
+                ))}
+                <a href="/#contact">
+                    <a 
+                        href="/#contact"
+                        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
+                    >
+                        Contactar
+                    </a>
+                </a>
+            </div>
+
+            <!-- Mobile Navigation Button -->
+            <button
+                type="button"
+                class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+                aria-expanded="false"
+                id="mobile-menu-button"
+            >
+                <span class="sr-only">Abrir menú principal</span>
+                <svg
+                    class="h-6 w-6"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                    />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                {links.map(link => (
+                    <a
+                        href={link.href}
+                        class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+                    >
+                        {link.name}
+                    </a>
+                ))}
+                <div class="mt-4 px-3">
+                    <a href="/#contact">
+                        <a 
+                            href="/#contact"
+                            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center w-full"
+                        >
+                            Contactar
+                        </a>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    // Toggle mobile menu
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+
+    button?.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', (!expanded).toString());
+        menu?.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+        const target = event.target as Node;
+        if (!button?.contains(target) && !menu?.contains(target)) {
+            button?.setAttribute('aria-expanded', 'false');
+            menu?.classList.add('hidden');
+        }
+    });
+</script>
+
+<!-- Spacer para compensar el navbar fijo -->
+<div class="h-16"></div>

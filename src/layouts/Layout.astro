@@ -1,0 +1,108 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { ViewTransitions } from 'astro:transitions';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+}
+
+const { 
+	title, 
+	description = "Eduardo Construcciones: Empresa líder en construcción y reformas en Tenerife. Más de 20 años de experiencia en proyectos residenciales y comerciales.",
+	image = "/og-image.jpg"
+} = Astro.props;
+
+// Construir URLs absolutas
+const siteUrl = Astro.site ? Astro.site.toString() : 'https://eduardoconstrucciones.com';
+const pageUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={pageUrl} />
+		
+		<title>{title} | Eduardo Construcciones Tenerife</title>
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={pageUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageUrl} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={pageUrl} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={imageUrl} />
+		
+		<!-- Geo Tags -->
+		<meta name="geo.region" content="ES-CN" />
+		<meta name="geo.placename" content="Tenerife" />
+		<meta name="geo.position" content="28.2916;-16.6291" />
+		<meta name="ICBM" content="28.2916, -16.6291" />
+		
+		<!-- Additional SEO -->
+		<meta name="keywords" content="construcción tenerife, reformas tenerife, constructora tenerife, construcción islas canarias, reformas islas canarias, eduardo construcciones, proyectos construcción tenerife" />
+		<meta name="author" content="Eduardo Construcciones" />
+		<meta name="robots" content="index, follow" />
+		
+		<ViewTransitions fallback="swap" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="min-h-screen antialiased font-[Inter] bg-gradient-to-br from-blue-50 via-white to-blue-100">
+		<!-- Fondo decorativo -->
+		<div class="fixed inset-0 -z-10" transition:persist>
+			<!-- Gradiente principal -->
+			<div class="absolute inset-0 bg-gradient-to-br from-blue-100 via-white to-blue-200"></div>
+			
+			<!-- Formas decorativas -->
+			<div class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-br from-blue-200/30 via-transparent to-transparent"></div>
+			<div class="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-tr from-blue-200/30 via-transparent to-transparent"></div>
+			
+			<!-- Patrón de puntos -->
+			<div class="absolute inset-0 opacity-30"
+				style="background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.15) 1px, transparent 0); background-size: 50px 50px;">
+			</div>
+		</div>
+
+		<Navbar />
+		<main class="relative">
+			<slot />
+		</main>
+		<Footer />
+
+		<style is:global>
+			/* Scrollbar personalizada */
+			@media (min-width: 768px) {
+				::-webkit-scrollbar {
+					width: 8px;
+					height: 8px;
+				}
+				::-webkit-scrollbar-track {
+					background: #f1f1f1;
+					border-radius: 4px;
+				}
+				::-webkit-scrollbar-thumb {
+					background: #888;
+					border-radius: 4px;
+				}
+				::-webkit-scrollbar-thumb:hover {
+					background: #666;
+				}
+			}
+		</style>
+	</body>
+</html>
